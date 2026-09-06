@@ -289,7 +289,7 @@ class HomePage extends StatelessWidget {
                 foregroundColor: AppColors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
                 elevation: 0,
-                side: const BorderSide(color: Colors.white38),
+                side: const BorderSide(color: Colors.white24),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),
