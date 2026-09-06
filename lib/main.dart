@@ -261,7 +261,7 @@ class HomePage extends StatelessWidget {
                 Navigator.pushNamed(context, '/about');
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
+                backgroundColor: AppColors.navy,
                 foregroundColor: AppColors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
                 elevation: 0,
