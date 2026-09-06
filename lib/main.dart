@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyPortfolioApp());
@@ -344,6 +345,7 @@ class AboutPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.navy,
         foregroundColor: AppColors.white,
         title: const Text('About Me'),
@@ -584,6 +586,7 @@ class ProjectsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.navy,
         foregroundColor: AppColors.white,
         title: const Text('Projects'),
@@ -847,6 +850,7 @@ class ContactPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.navy,
         foregroundColor: AppColors.white,
         title: const Text('Contact'),
@@ -904,45 +908,85 @@ class ContactPage extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             // Contact Info Card
-            Card(
-              elevation: 2,
-              margin: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
-                side: const BorderSide(color: Color(0xFFD8DDE8)),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Reach Me',
-                      style: TextStyle(
-                        color: AppColors.navy,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+              Card(
+                    elevation: 2,
+                    margin: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      side: const BorderSide(color: Color(0xFFD8DDE8)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Reach Me',
+                            style: TextStyle(
+                              color: AppColors.navy,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Always happy to talk. Whether you have a project idea, a question about my work, or just want to say hi — my inbox is open.',
+                            style: TextStyle(
+                              color: Color(0xFF4A5A70),
+                              fontSize: 14,
+                              height: 1.6,
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+
+                          // Clickable Email
+                          _buildContactLink(
+                            Icons.email_outlined,
+                            'sahithipurna.malyala@gmail.com',
+                            'mailto:sahithipurna.malyala@gmail.com',
+                          ),
+                          const SizedBox(height: 14),
+
+                          // Clickable GitHub
+                          _buildContactLink(
+                            Icons.code_outlined,
+                            'github.com/sahithi-101',
+                            'https://github.com/sahithi-101',
+                          ),
+                          const SizedBox(height: 14),
+
+                          // Clickable LinkedIn
+                          _buildContactLink(
+                            Icons.business_outlined,
+                            'linkedin.com/in/sahithi-purna-malyala',
+                            'https://linkedin.com/in/sahithi-purna-malyala',
+                          ),
+                          const SizedBox(height: 24),
+
+                          // Resume Button
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton.icon(
+                              onPressed: () => launchUrl(
+                                Uri.parse('https://sahithi-101.github.io/portfolio/assets/resume/resume.pdf'),
+                                mode: LaunchMode.externalApplication,
+                              ),
+                              icon: const Icon(Icons.download),
+                              label: const Text('View / Download Resume'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF1E3A5F),
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Always happy to talk. Whether you have a project idea, a question about my work, or just want to say hi — my inbox is open.',
-                      style: TextStyle(
-                        color: Color(0xFF4A5A70),
-                        fontSize: 14,
-                        height: 1.6,
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    _buildContactRow(Icons.email_outlined, 'sahithipurna.malyala@gmail.com'),
-                    const SizedBox(height: 14),
-                    _buildContactRow(Icons.code_outlined, 'github.com/sahithi-101'),
-                    const SizedBox(height: 14),
-                    _buildContactRow(Icons.business_outlined, 'linkedin.com/in/sahithi-purna-malyala'),
-                  ],
-                ),
-              ),
-            ),
+                  ),
             const SizedBox(height: 32),
             // Back to Home Button
             Center(
@@ -973,31 +1017,29 @@ class ContactPage extends StatelessWidget {
     );
   }
 
-  Widget _buildContactRow(IconData icon, String text) {
-    return Row(
-      children: [
-        Container(
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: AppColors.offWhite,
-            border: Border.all(color: const Color(0xFFC8D0DC)),
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Icon(icon, size: 20, color: AppColors.navyLight),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
-          child: Text(
-            text,
-            style: const TextStyle(
-              color: AppColors.navyLight,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
+  Widget _buildContactLink(IconData icon, String text, String url) {
+    return InkWell(
+      onTap: () => launchUrl(Uri.parse(url)),
+      borderRadius: BorderRadius.circular(6),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          children: [
+            Icon(icon, size: 20, color: const Color(0xFF4A5A70)),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  color: Color(0xFF2563EB), // Blue link color
+                  fontSize: 14,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
