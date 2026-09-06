@@ -184,7 +184,7 @@ class HomePage extends StatelessWidget {
         Text(
           value,
           style: const TextStyle(
-            color: AppColors.goldLight,
+            color: AppColors.muted,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
@@ -373,8 +373,8 @@ class AboutPage extends StatelessWidget {
                   children: [
                 // Explicit Image widget usage
                 ClipOval(
-                child: Image.network(
-                'https://github.com/sahithi-101/portfolio/pic.jpeg',
+                child: Image.asset(
+                'assets/picture/pic.jpeg',
                   width: 120,
                   height: 120,
                   fit: BoxFit.cover,
