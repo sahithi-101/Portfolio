@@ -135,11 +135,7 @@ class BackToHomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
-      onPressed: () => Navigator.pushNamedAndRemoveUntil(
-        context,
-        '/',
-        (route) => false,
-      ),
+      onPressed: () => Navigator.pop(context),
       icon: const Icon(Icons.arrow_back, size: 16),
       label: const Text('Back to Home'),
       style: ElevatedButton.styleFrom(
@@ -168,10 +164,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isWide = MediaQuery.of(context).size.width > 700;
-    // Optical centering: bias extra space to the bottom so the visible
-    // content block sits slightly above true vertical center.
-    final screenHeight = MediaQuery.of(context).size.height;
-    final verticalNudge = screenHeight * 0.10;
 
     return Scaffold(
       backgroundColor: AppColors.parchment,
@@ -179,7 +171,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(28, 28, 28, 28 + verticalNudge),
+            padding: const EdgeInsets.all(28),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 960),
               child: isWide
@@ -414,7 +406,7 @@ class AboutPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 680),
+            constraints: const BoxConstraints(maxWidth: 800),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -735,8 +727,8 @@ class ProjectsPage extends StatelessWidget {
                               number: '03',
                               title: 'Adversarial ML',
                               description:
-                                  'Applying Universal Adversarial Perturbations (UAP) across image datasets, then hardening classifiers against them via adversarial training. Benchmarking robustness gains against clean-data accuracy trade-offs. Currently in progress.',
-                              tags: ['PyTorch', 'Adversarial Training'],
+                                  'Applying UAP on image datasets and making systems adversary-proof by training models on adversarial images. Currently in progress.',
+                              tags: ['PyTorch'],
                             )),
                           ],
                         );
@@ -763,8 +755,8 @@ class ProjectsPage extends StatelessWidget {
                             number: '03',
                             title: 'Adversarial ML',
                             description:
-                                'Applying Universal Adversarial Perturbations (UAP) across image datasets, then hardening classifiers against them via adversarial training. Benchmarking robustness gains against clean-data accuracy trade-offs. Currently in progress.',
-                            tags: ['PyTorch', 'Adversarial Training'],
+                                'Applying UAP on image datasets and making systems adversary-proof by training models on adversarial images. Currently in progress.',
+                            tags: ['PyTorch'],
                           ),
                         ],
                       );
