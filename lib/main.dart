@@ -139,7 +139,7 @@ class HomePage extends StatelessWidget {
           const CircleAvatar(
             radius: 70,
             backgroundColor: AppColors.navyLight,
-            backgroundImage: NetworkImage('https://github.com/sahithi-101/Portfolio_App/blob/d1ed0b0b39d1aae76d6b098e4622ed991719246b/pic.jpeg'),
+            backgroundImage: NetworkImage('https://github.com/sahithi-101/portfolio/blob/0e1bbd873117afd011c8e85bf6618fdbb8faeec2/pic.jpeg'),
           ),
           const SizedBox(height: 16),
           const Text(
@@ -371,8 +371,8 @@ class AboutPage extends StatelessWidget {
                   children: [
                 // Explicit Image widget usage
                 ClipOval(
-                child: Image.asset(
-                'https://github.com/sahithi-101/Portfolio_App/blob/d1ed0b0b39d1aae76d6b098e4622ed991719246b/pic.jpeg',
+                child: Image.network(
+                'https://github.com/sahithi-101/portfolio/blob/0e1bbd873117afd011c8e85bf6618fdbb8faeec2/pic.jpeg',
                   width: 120,
                   height: 120,
                   fit: BoxFit.cover,
