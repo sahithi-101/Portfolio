@@ -140,7 +140,7 @@ class HomePage extends StatelessWidget {
           const CircleAvatar(
             radius: 70,
             backgroundColor: AppColors.navyLight,
-            backgroundImage: NetworkImage('https://github.com/sahithi-101/portfolio/pic.jpeg'),
+            backgroundImage: AssetImage('assets/picture/pic.jpeg'),
           ),
           const SizedBox(height: 16),
           const Text(
